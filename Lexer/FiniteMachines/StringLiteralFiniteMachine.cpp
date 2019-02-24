@@ -33,6 +33,7 @@ State StringLiteralFiniteMachine::processString(std::string str, int &i, int row
     State state;
     token_ = new Token();
     token_->row = row;
+    token_->type = TokenTypes::StringLiteral;
     token_->t_start = i;
     do {
         if (i < str.length())
@@ -70,6 +71,3 @@ void StringLiteralFiniteMachine::consumingSpecialSymbolState(char symb) {
     inner_state_ = CONSUMING_STRING;
 }
 
-Token * StringLiteralFiniteMachine::getToken() {
-    return token_;
-}

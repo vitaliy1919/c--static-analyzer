@@ -22,6 +22,8 @@ public:
         inner_state_ = 0;
     }
 
+    State processString(std::string str, int &i, int row) override;
+
 
 };
 

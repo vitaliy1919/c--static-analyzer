@@ -26,6 +26,7 @@ bool isWhiteSpace(char symb) {
 }
 
 bool isTerminateSymbol(char symb) {
-    return isWhiteSpace(symb) || symb == ';' || symb == ':' || symb == ',' || symb == '?';
+    return isWhiteSpace(symb) || symb == ';' || symb == ':' || symb == ',' || symb == '?' || symb == '[' || symb == ']'
+        || (!isdigit(symb) && !isalpha(symb) && symb != '+' && symb != '-' && symb != '.');
 }
 #endif //LEXER_STRING_UTILS_H

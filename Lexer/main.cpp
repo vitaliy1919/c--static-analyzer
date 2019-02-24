@@ -4,19 +4,14 @@
 #include "FiniteMachines/CommentsFiniteMachine.h"
 #include "FiniteMachines/StringLiteralFiniteMachine.h"
 #include "FiniteMachines/NumbersFiniteMachine.h"
+#include "FiniteMachines/OperatorsStateMachine.h"
+#include "FiniteMachines/ReservedWordsFiniteMachine.h"
+#include "Utils/trie.h"
+#include "Utils/TokenRecognizer.h"
 using namespace std;
   
-const int ALPHABET_SIZE = 26; 
 
-const string ANSI_RESET = "\u001B[0m";
-const string ANSI_BLACK = "\u001B[30m";
-const string ANSI_RED = "\u001B[31m";
-const string ANSI_GREEN = "\u001B[32m";
-const string ANSI_YELLOW = "\u001B[33m";
-const string ANSI_BLUE = "\u001B[34m";
-const string ANSI_PURPLE = "\u001B[35m";
-const string ANSI_CYAN = "\u001B[36m";
-const string ANSI_WHITE = "\u001B[37m";
+
 // Driver 
 int main() {
     // Input keys (use only 'a' through 'z' 
@@ -40,41 +35,41 @@ int main() {
     ofstream tokens_file("tokens.txt");
     string line;
     string cur_string;
-    bool line_comment;
-    bool block_comment_start;
+//    bool line_comment;
+//    bool block_comment_start;
     int row_number = 1;
-    bool match_found = false;
-    while (getline(file, line)) {
-        for (int i = 0; i < line.size(); i++) {
-            int res = trie.searchByLetter(line[i]);
-            if (res == -1 || i == line.size() - 1) {
-                res = trie.searchByLetter(line[i]);
-                if (match_found) {
-                    tokens_file << "(" << row_number<<", "<<i - cur_string.size() + 1 <<"): "<<cur_string << endl;
-                }
-                match_found = false;
-                cur_string.clear();
-            }
-            if (res >= 0) {
-                cout<<ANSI_RED<<line[i]<<ANSI_RESET;
-                cur_string += line[i];
-            }
-            if (res == 1) {
-                match_found = true;
-            }
-            if (res == -1 || i == line.size() - 1) {
-                if (res== -1)
-                    cout << line[i];
-                if (match_found) {
-                    tokens_file << "(" << row_number<<", "<<i - cur_string.size() + 1 <<"): "<<cur_string << endl;
-                }
-                match_found = false;
-                cur_string.clear();
-            }
-        }
-        cout<<endl;
-        row_number++;
-    }
+//    bool match_found = false;
+//    while (getline(file, line)) {
+//        for (int i = 0; i < line.size(); i++) {
+//            int res = trie.searchByLetter(line[i]);
+//            if (res == -1 || i == line.size() - 1) {
+//                res = trie.searchByLetter(line[i]);
+//                if (match_found) {
+//                    tokens_file << "(" << row_number<<", "<<i - cur_string.size() + 1 <<"): "<<cur_string << endl;
+//                }
+//                match_found = false;
+//                cur_string.clear();
+//            }
+//            if (res >= 0) {
+//                //cout<<ANSI_RED<<line[i]<<ANSI_RESET;
+//                cur_string += line[i];
+//            }
+//            if (res == 1) {
+//                match_found = true;
+//            }
+//            if (res == -1 || i == line.size() - 1) {
+//                if (res== -1)
+//                    cout << line[i];
+//                if (match_found) {
+//                    tokens_file << "(" << row_number<<", "<<i - cur_string.size() + 1 <<"): "<<cur_string << endl;
+//                }
+//                match_found = false;
+//                cur_string.clear();
+//            }
+//        }
+//        cout<<endl;
+//        row_number++;
+//    }
     file.close();
     trie.printToFile("out.txt");
     cout<<"------------------------------------------"<<endl;
@@ -82,20 +77,29 @@ int main() {
     FiniteStateMachine *machine = new NumbersFiniteMachine();
     row_number = 1;
     State state;
+    Token * token = nullptr;
     while (getline(file, line)) {
         int i = 0;
         while (i < line.size()) {
-            if (line[i] == ' ')
+            if (line[i] == ' ') {
+                cout << line[i];
+
                 i++;
-            else {
-                state = machine->processString(line, i, row_number);
-                if (state == State::Ended)
-                    cout << machine->getToken() << endl;
+            } else {
+                int start = i;
+                try {
+                    token = TokenRecognizer::recognizeToken(line, i, row_number);
+                    tokens_file << *token << '\n';
+                    token->printColored();
+                } catch (std::runtime_error &e) {
+                    for (int j = start; j < i; j++)
+                        cout << line[j];
+                   // cout << e.what() << endl;
+                }
             }
         }
         //cout<<"row: " << row_number << endl;
-        if (row_number == 34)
-            int a = 2;
+        cout << '\n';
         row_number++;
     }
 
@@ -121,5 +125,5 @@ int main() {
 //    }
     delete machine;
     tokens_file.close();
-
+    file.close();
 }

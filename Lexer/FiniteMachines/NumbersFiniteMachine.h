@@ -30,8 +30,6 @@ class NumbersFiniteMachine: public FiniteStateMachine {
 public:
     const std::string &getCurrentString() const override;
 
-    Token* getToken() override;
-
     State processString(std::string str, int &i, int row) override;
 
 protected:

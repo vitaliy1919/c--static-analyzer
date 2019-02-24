@@ -6,22 +6,34 @@
 #define LEXER_OPERATORSFINITESTATEMACHINE_H
 
 
-#include "FiniteStateMachine.h"
-#include "../Utils/trie.h"
+#include "TrieBasedFiniteMachine.h"
 
 using std::string;
 
-class OperatorsStateMachine: public FiniteStateMachine {
-public:
-    Token getToken() override;
-    OperatorsStateMachine();
-    State processString(std::string str, int &i, int row) override;
-
+class OperatorsStateMachine: public TrieBasedFiniteMachine {
 protected:
-    State handleInput(char symbol) override;
+    void init() override {
+        string binary_operators[] = {"+", "-", "*", "/", "%", "=", "&", "|", ">", "<", "&", "!", "^", ">>", "<<"};
+        string double_operators[] = {"++", "--", "&&", "||", "::"};
+        string unary_operators[] = {"(", ")", "~", "->", ".", "?", ":"};
+        for (int i = 0; i < sizeof(binary_operators) / sizeof(string);i++) {
+            trie_.insert(binary_operators[i]);
+            trie_.insert(binary_operators[i] + "=");
+        }
+        for (int i = 0; i < sizeof(double_operators) / sizeof(string);i++) {
+            trie_.insert(double_operators[i]);
+        }
+        for (int i = 0; i < sizeof(unary_operators) / sizeof(string);i++) {
+            trie_.insert(unary_operators[i]);
+        }
+    }
 
-private:
-    Trie operatorsTrie_;
+    void preProcess() override {
+        token_->type = TokenTypes::Operator;
+    }
+
+public:
+    OperatorsStateMachine() {init();}
 };
 
 

@@ -19,11 +19,15 @@ protected:
     std::string current_string_;
     State public_state_ = State::Running;
     int inner_state_;
-    virtual State handleInput(char symbol) = 0;
+    virtual State handleInput(char symbol) {
+        return State::Ended;
+    }
 
 public:
     virtual const std::string &getCurrentString() const;
-    virtual Token* getToken() = 0;
+    virtual Token *getToken() {
+        return token_;
+    }
     virtual State onInput(char symbol);
     virtual State processString(std::string str, int& i, int row) = 0;
 

@@ -9,10 +9,6 @@ const std::string &NumbersFiniteMachine::getCurrentString() const {
     return FiniteStateMachine::getCurrentString();
 }
 
-Token* NumbersFiniteMachine::getToken() {
-    return token_;
-}
-
 
 State NumbersFiniteMachine::processString(std::string str, int &i, int row) {
 
@@ -20,6 +16,7 @@ State NumbersFiniteMachine::processString(std::string str, int &i, int row) {
     token_ = new Token();
     token_->row = row;
     token_->t_start = i;
+    token_->type = TokenTypes::Number;
     do {
         if (i < str.length())
             state = handleInput(str[i]);

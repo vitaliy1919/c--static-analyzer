@@ -20,7 +20,7 @@ protected:
 
     void consumingStringState(char symb);
     State processString(std::string str, int &i, int row) override;
-    virtual Token * getToken() override;
+
     void consumingSpecialSymbolState(char symb);
 };
 

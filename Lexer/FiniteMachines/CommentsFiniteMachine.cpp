@@ -75,3 +75,7 @@ void CommentsFiniteMachine::fifthState(char symbol) {
     if (symbol == '\n')
         public_state_ = State::Ended;
 }
+
+State CommentsFiniteMachine::processString(std::string str, int &i, int row) {
+    return State::Ended;
+}

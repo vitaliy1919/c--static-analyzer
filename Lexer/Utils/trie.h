@@ -94,11 +94,15 @@ public:
                 iter = letters[str[i]];
                 if (iter->isEndOfWord)
                     cur_max = i;
-            } else
+                i++;
+            } else {
                 flag = true;
+                if (isalpha(str[i]) || str[i] == '_')
+                    i++;
+            }
         } while (!flag);
         if (cur_max != -1)
-            i = cur_max;
+            i = cur_max + 1;
         return cur_max != -1;
     }
 };
