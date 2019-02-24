@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.12)
+project(Lexer)
+
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(Lexer main.cpp FiniteMachines/FiniteStateMachine.cpp FiniteMachines/FiniteStateMachine.h FiniteMachines/CommentsFiniteMachine.cpp FiniteMachines/CommentsFiniteMachine.h FiniteMachines/StringLiteralFiniteMachine.cpp FiniteMachines/StringLiteralFiniteMachine.h Tokens/Token.h FiniteMachines/NumbersFiniteMachine.cpp FiniteMachines/NumbersFiniteMachine.h Utils/string-utils.h FiniteMachines/ReservedWordsFiniteMachine.cpp FiniteMachines/ReservedWordsFiniteMachine.h Utils/trie.h FiniteMachines/OperatorsStateMachine.cpp FiniteMachines/OperatorsStateMachine.h)
