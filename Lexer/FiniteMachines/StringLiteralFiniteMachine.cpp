@@ -29,9 +29,9 @@ State StringLiteralFiniteMachine::handleInput(char symb) {
     return public_state_;
 }
 
-State StringLiteralFiniteMachine::processString(std::string str, int &i, int row) {
+State StringLiteralFiniteMachine::processString(const string &str, int &i, int row) {
     State state;
-    token_ = new Token();
+    token_ = std::make_shared<Token>();
     token_->row = row;
     token_->type = TokenTypes::StringLiteral;
     token_->t_start = i;

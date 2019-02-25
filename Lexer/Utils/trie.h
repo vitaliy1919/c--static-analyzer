@@ -31,7 +31,12 @@ struct TrieNode
 class Trie {
     TrieNode *root_ = nullptr;
     TrieNode* iter_ = nullptr;
+
 public:
+    TrieNode *getRoot() const {
+        return root_;
+    }
+
     void insert(std::string key) {
         if (root_ == nullptr)
             root_ = new TrieNode();
@@ -83,8 +88,22 @@ public:
         }
         return 0;
     }
-
-    bool findMaxSubstring(std::string str, int& i) {
+    bool find(const std::string &str) {
+        if (root_ == nullptr)
+            return false;
+        TrieNode *iter = root_;
+        for (int i = 0; i < str.size(); i++) {
+            auto &letters = iter->children;
+            if (letters.in(str[i])) {
+                iter = letters[str[i]];
+                if (iter == nullptr)
+                    return false;
+            } else
+                return false;
+        }
+        return iter->isEndOfWord;
+    }
+    bool findMaxSubstring(std::string str, int& i, bool (*adv)(char)) {
         TrieNode *iter = root_;
         bool flag = false;
         int cur_max = -1;
@@ -97,7 +116,7 @@ public:
                 i++;
             } else {
                 flag = true;
-                if (isalpha(str[i]) || str[i] == '_')
+                if (adv(str[i]))
                     i++;
             }
         } while (!flag);

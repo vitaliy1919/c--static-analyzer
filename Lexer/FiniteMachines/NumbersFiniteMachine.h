@@ -30,7 +30,7 @@ class NumbersFiniteMachine: public FiniteStateMachine {
 public:
     const std::string &getCurrentString() const override;
 
-    State processString(std::string str, int &i, int row) override;
+    State processString(const string &str, int &i, int row) override;
 
 protected:
     bool token_omit_symbol_;

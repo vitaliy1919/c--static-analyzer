@@ -10,10 +10,10 @@ const std::string &NumbersFiniteMachine::getCurrentString() const {
 }
 
 
-State NumbersFiniteMachine::processString(std::string str, int &i, int row) {
+State NumbersFiniteMachine::processString(const string &str, int &i, int row) {
 
     State state;
-    token_ = new Token();
+    token_ = std::make_shared<Token>();
     token_->row = row;
     token_->t_start = i;
     token_->type = TokenTypes::Number;
@@ -28,6 +28,7 @@ State NumbersFiniteMachine::processString(std::string str, int &i, int row) {
 
         i++;
     } while (public_state_ != State::Undefined && public_state_ != State ::Ended);
+    i--;
     token_->t_end = i;
     return public_state_;
 }

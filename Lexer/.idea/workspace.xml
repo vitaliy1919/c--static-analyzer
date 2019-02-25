@@ -12,11 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3e3ca6a-e075-41d8-bab3-c7d057c151e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utils/SingletonFiniteMachineFabric.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utils/TokenRecognizer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FiniteMachines/PreprocessorFiniteMachine.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tokens/PreprocessorToken.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utils/OutFormats.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FiniteMachines/CommentsFiniteMachine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteMachines/CommentsFiniteMachine.cpp" afterDir="false" />
@@ -24,13 +22,15 @@
       <change beforePath="$PROJECT_DIR$/FiniteMachines/FiniteStateMachine.h" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteMachines/FiniteStateMachine.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.h" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FiniteMachines/OperatorsStateMachine.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FiniteMachines/OperatorsStateMachine.h" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteMachines/OperatorsStateMachine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.h" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FiniteMachines/StringLiteralFiniteMachine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteMachines/StringLiteralFiniteMachine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FiniteMachines/StringLiteralFiniteMachine.h" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteMachines/StringLiteralFiniteMachine.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.h" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tokens/Token.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tokens/Token.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/SingletonFiniteMachineFabric.h" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/SingletonFiniteMachineFabric.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/TokenRecognizer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/TokenRecognizer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Utils/string-utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/string-utils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Utils/trie.h" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/trie.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
@@ -44,86 +44,34 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FUSProjectUsageTrigger">
-    <session id="-513189401">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="4" />
-          <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.23" value="1" />
-          <entry key="project.opened" value="8" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="GDB" value="7" />
-          <entry key="cpp" value="7674" />
-          <entry key="h" value="2587" />
-          <entry key="mm" value="35" />
-          <entry key="txt" value="200" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="GDBCommands" value="7" />
-          <entry key="ObjectiveC" value="10296" />
-          <entry key="PLAIN_TEXT" value="200" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="Lexer" value="2" />
-          <entry key="Makefile" value="1" />
-          <entry key="cbp" value="2" />
-          <entry key="cpp" value="19" />
-          <entry key="h" value="25" />
-          <entry key="png" value="1" />
-          <entry key="txt" value="12" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CMakeLists.txt" value="3" />
-          <entry key="Image" value="1" />
-          <entry key="ObjectiveC" value="44" />
-          <entry key="PLAIN_TEXT" value="14" />
-        </counts>
-      </usages-collector>
-    </session>
     <session id="1169255426">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="cpp" value="16" />
-          <entry key="h" value="36" />
-          <entry key="txt" value="6" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CMakeLists.txt" value="1" />
-          <entry key="ObjectiveC" value="52" />
-          <entry key="PLAIN_TEXT" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="595" />
-          <entry key="h" value="3162" />
-          <entry key="txt" value="34" />
+          <entry key="cpp" value="892" />
+          <entry key="h" value="972" />
+          <entry key="mm" value="53" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="3757" />
-          <entry key="PLAIN_TEXT" value="34" />
+          <entry key="ObjectiveC" value="1917" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="cpp" value="8" />
+          <entry key="h" value="17" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="ObjectiveC" value="25" />
         </counts>
       </usages-collector>
     </session>
@@ -131,87 +79,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Utils/trie.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="87" selection-start-line="87" selection-end-line="87" />
-              <folding>
-                <element signature="e#84#108#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/FiniteMachines/OperatorsStateMachine.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cmake-build-debug/int1.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="16" selection-end-line="210" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cmake-build-debug/int.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Utils/TokenRecognizer.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="51" selection-start-line="51" selection-end-line="51" />
-              <folding>
-                <element signature="e#106#124#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/c++/8.2.1/bits/shared_ptr_base.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="993" selection-start-line="993" selection-end-line="993" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Utils/SingletonFiniteMachineFabric.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-640">
-              <caret line="20" column="80" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="80" />
-              <folding>
-                <element signature="e#135#184#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="90" selection-start-line="90" selection-end-line="90" />
+            <state relative-caret-position="346">
+              <caret line="100" column="47" lean-forward="true" selection-start-line="100" selection-start-column="47" selection-end-line="100" selection-end-column="47" />
               <folding>
                 <element signature="e#67#91#0" expanded="true" />
               </folding>
@@ -220,10 +91,106 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/c++/8.2.1/bits/basic_string.h">
+        <entry file="file://$PROJECT_DIR$/Utils/TokenRecognizer.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="436" selection-start-line="436" selection-end-line="436" />
+            <state relative-caret-position="106">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
+              <folding>
+                <element signature="e#106#124#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Utils/string-utils.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="436">
+              <caret line="54" column="6" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
+              <folding>
+                <element signature="e#101#118#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FiniteMachines/PreprocessorFiniteMachine.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+              <folding>
+                <element signature="e#41#79#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FiniteMachines/PreprocessorFiniteMachine.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+              <folding>
+                <element signature="e#127#158#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Utils/OutFormats.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Utils/SingletonFiniteMachineFabric.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="67" column="80" selection-start-line="67" selection-start-column="80" selection-end-line="67" selection-end-column="80" />
+              <folding>
+                <element signature="e#135#184#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Utils/trie.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="93" selection-start-line="93" selection-end-line="93" />
+              <folding>
+                <element signature="e#84#108#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="123" column="48" selection-start-line="123" selection-start-column="48" selection-end-line="123" selection-end-column="48" />
+              <folding>
+                <element signature="e#248#3090#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tokens/Token.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="89" selection-start-line="89" selection-end-line="89" />
+              <folding>
+                <element signature="e#86#103#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -235,6 +202,7 @@
       <find>public static final String</find>
       <find>isTer</find>
       <find>ReservedWordsFiniteMachine</find>
+      <find>&quot;string-utils.h&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>const string</replace>
@@ -262,22 +230,30 @@
         <option value="$PROJECT_DIR$/FiniteMachines/OperatorsStateMachine.cpp" />
         <option value="$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/FiniteMachines/FiniteStateMachine.h" />
-        <option value="$PROJECT_DIR$/Utils/string-utils.h" />
         <option value="$PROJECT_DIR$/FiniteMachines/CommentsFiniteMachine.cpp" />
         <option value="$PROJECT_DIR$/Utils/SingleteonFiniteMachineFabric.h" />
-        <option value="$PROJECT_DIR$/Utils/SingletonFiniteMachineFabric.h" />
-        <option value="$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.cpp" />
-        <option value="$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.h" />
-        <option value="$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.cpp" />
-        <option value="$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.h" />
         <option value="$PROJECT_DIR$/FiniteMachines/OperatorsStateMachine.h" />
-        <option value="$PROJECT_DIR$/FiniteMachines/StringLiteralFiniteMachine.cpp" />
-        <option value="$PROJECT_DIR$/Tokens/Token.h" />
-        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.h" />
+        <option value="$PROJECT_DIR$/FiniteMachines/IdentifiersFiniteMachine.h" />
+        <option value="$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.h" />
         <option value="$PROJECT_DIR$/cmake-build-debug/int.txt" />
+        <option value="$PROJECT_DIR$/Tokens/StringToken.h" />
+        <option value="$PROJECT_DIR$/Tokens/CommentToken.h" />
+        <option value="$PROJECT_DIR$/Utils/string-utils.h" />
+        <option value="$PROJECT_DIR$/FiniteMachines/PreprocessorFiniteMachine.h" />
+        <option value="$PROJECT_DIR$/FiniteMachines/FiniteStateMachine.h" />
+        <option value="$PROJECT_DIR$/FiniteMachines/StringLiteralFiniteMachine.cpp" />
+        <option value="$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.cpp" />
+        <option value="$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.cpp" />
+        <option value="$PROJECT_DIR$/FiniteMachines/IdentifiersFiniteMachine.cpp" />
+        <option value="$PROJECT_DIR$/Tokens/PreprocessorToken.h" />
+        <option value="$PROJECT_DIR$/Utils/SingletonFiniteMachineFabric.h" />
+        <option value="$PROJECT_DIR$/Utils/OutFormats.h" />
         <option value="$PROJECT_DIR$/Utils/TokenRecognizer.h" />
         <option value="$PROJECT_DIR$/Utils/trie.h" />
+        <option value="$PROJECT_DIR$/Tokens/Token.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/FiniteMachines/PreprocessorFiniteMachine.cpp" />
       </list>
     </option>
   </component>
@@ -316,36 +292,10 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="Lexer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="Lexer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="FiniteMachines" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Lexer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="Tokens" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Lexer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="Utils" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -377,10 +327,41 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="Lexer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="Lexer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name=".idea" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Lexer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="FiniteMachines" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Lexer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Tokens" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Lexer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Utils" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="trie&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/Utils/trie.h&#10;int&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/cmake-build-debug/int.txt&#10;toke&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/cmake-build-debug/tokens.txt&#10;res&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/FiniteMachines/ReservedWordsFiniteMachine.h&#10;ope&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/FiniteMachines/OperatorsStateMachine.h&#10;oper&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/FiniteMachines/OperatorsStateMachine.h&#10;num&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/Lexer/FiniteMachines/NumbersFiniteMachine.cpp&#10;str&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/Lexer/StringLiteralFiniteMachine.cpp&#10;co&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/Lexer/CommentsFiniteMachine.h" />
+    <property name="SearchEverywhereHistoryKey" value="pr&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/FiniteMachines/PreprocessorFiniteMachine.h&#10;pre&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/Tokens/PreprocessorToken.h&#10;trie&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/Utils/trie.h&#10;int&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/cmake-build-debug/int.txt&#10;toke&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/cmake-build-debug/tokens.txt&#10;res&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/FiniteMachines/ReservedWordsFiniteMachine.h&#10;ope&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/FiniteMachines/OperatorsStateMachine.h&#10;oper&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/c--static-analyzer/Lexer/FiniteMachines/OperatorsStateMachine.h&#10;num&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/Lexer/FiniteMachines/NumbersFiniteMachine.cpp&#10;str&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/Lexer/StringLiteralFiniteMachine.cpp&#10;co&#9;FILE&#9;file:///home/vitdmit/CLionProjects/Compilers/Lexer/CommentsFiniteMachine.h" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -440,31 +421,33 @@
       <workItem from="1550994839503" duration="2865000" />
       <workItem from="1551004996411" duration="10235000" />
       <workItem from="1551034226130" duration="10253000" />
+      <workItem from="1551084450681" duration="10365000" />
+      <workItem from="1551130480332" duration="5976000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40202000" />
+    <option name="totallyTimeSpent" value="56549000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1600" height="840" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.492569" visible="true" weight="0.2773488" />
-      <window_info id="Structure" order="1" sideWeight="0.507431" side_tool="true" weight="0.2773488" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49377593" visible="true" weight="0.2792793" />
+      <window_info id="Structure" order="1" sideWeight="0.5062241" side_tool="true" weight="0.2769486" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.497151" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.46438748" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.525641" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.46296296" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.56980056" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32907802" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.5868946" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286908" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.32905984" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -472,22 +455,22 @@
       <window_info anchor="right" id="Database" order="3" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.492569" visible="true" weight="0.2773488" />
-      <window_info id="Structure" order="1" sideWeight="0.507431" side_tool="true" weight="0.2773488" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49377593" visible="true" weight="0.27971256" />
+      <window_info id="Structure" order="1" sideWeight="0.5062241" side_tool="true" weight="0.2769486" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32905984" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.46438748" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.97214484" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.46425256" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32905984" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32907802" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.56917363" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286908" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.32905984" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -505,45 +488,76 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>106</line>
+          <line>119</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>117</line>
+          <line>130</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>81</line>
+          <line>85</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.cpp</url>
-          <line>14</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.cpp</url>
-          <line>36</line>
+          <line>38</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Utils/trie.h</url>
-          <line>87</line>
+          <line>111</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Utils/TokenRecognizer.h</url>
-          <line>19</line>
+          <line>21</line>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Tokens/Token.h</url>
+          <line>60</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Utils/TokenRecognizer.h</url>
+          <line>73</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.h</url>
+          <line>36</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>93</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/FiniteMachines/PreprocessorFiniteMachine.cpp</url>
+          <line>8</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Utils/trie.h</url>
+          <line>93</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/FiniteMachines/PreprocessorFiniteMachine.cpp</url>
+          <line>20</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
-        <watch expression="str[i]" language="ObjectiveC" />
+        <watch expression="line[i]" language="ObjectiveC" />
         <watch expression="token_" language="ObjectiveC" />
+        <watch expression="str[i]" language="ObjectiveC" />
         <watch expression="current_state_" language="ObjectiveC" />
       </configuration>
     </watches-manager>
@@ -551,17 +565,17 @@
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>current_state_</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
         <expression-string>str[i]</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
         <expression-string>line[i]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>current_state_</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -581,61 +595,18 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/1.png" />
-    <entry file="file:///usr/include/c++/8.2.1/bits/hashtable.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12840">
-          <caret line="642" selection-start-line="642" selection-end-line="642" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/Lexer.cbp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Lexer">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Lexer" />
     <entry file="file://$PROJECT_DIR$/Token.cpp" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/Makefile">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FiniteMachines/FiniteStateMachine.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#41#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FiniteMachines/OperatorsStateMachine.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8.2.1/ext/alloc_traits.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/out.txt" />
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/OperatorsStateMachine.cpp" />
+    <entry file="file:///usr/include/c++/8.2.1/ext/alloc_traits.h" />
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.cpp" />
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
@@ -643,183 +614,253 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Utils/TokenRecognizer.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Utils/SingleteonFiniteMachineFabric.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FiniteMachines/CommentsFiniteMachine.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/TokenRecognizer.cpp" />
+    <entry file="file://$PROJECT_DIR$/Utils/SingleteonFiniteMachineFabric.cpp" />
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/tokens.txt" />
+    <entry file="file:///usr/include/c++/8.2.1/bits/basic_string.h" />
+    <entry file="file:///usr/include/c++/8.2.1/bits/shared_ptr_base.h" />
     <entry file="file://$PROJECT_DIR$/FiniteMachines/CommentsFiniteMachine.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="79" column="23" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="23" />
+        <state relative-caret-position="426">
+          <caret line="78" column="29" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
           <folding>
             <element signature="e#41#75#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FiniteMachines/FiniteStateMachine.h">
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/int1.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-146">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        <state relative-caret-position="210">
+          <caret line="53" column="17" lean-forward="true" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/FiniteStateMachine.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
-            <element signature="e#111#128#0" expanded="true" />
+            <element signature="e#41#72#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/CommentsFiniteMachine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/StringLiteralFiniteMachine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5">
-          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+        <state relative-caret-position="225">
+          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-          <folding>
-            <element signature="e#41#60#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/include/c++/5/bits/shared_ptr_base.h" />
     <entry file="file://$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        <state relative-caret-position="420">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="e#120#151#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.h">
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/int.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="123" column="48" selection-start-line="123" selection-start-column="48" selection-end-line="123" selection-end-column="48" />
+        <state relative-caret-position="4720">
+          <caret line="236" column="19" selection-start-line="236" selection-start-column="19" selection-end-line="236" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/IdentifiersFiniteMachine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="30" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/OperatorsStateMachine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tokens/PreprocessorToken.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tokens/CommentToken.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/FiniteStateMachine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/NumbersFiniteMachine.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="38" />
+          <folding>
+            <element signature="e#41#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/IdentifiersFiniteMachine.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-200">
+          <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FiniteMachines/StringLiteralFiniteMachine.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+        <state relative-caret-position="600">
+          <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FiniteMachines/StringLiteralFiniteMachine.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Utils/OutFormats.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Utils/string-utils.h">
+    <entry file="file://$PROJECT_DIR$/Tokens/PreprocessorToken.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tokens/Token.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="50" column="14" lean-forward="true" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+        <state relative-caret-position="240">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
           <folding>
-            <element signature="e#86#103#0" expanded="true" />
-            <element signature="e#232#249#0" expanded="true" />
+            <element signature="e#111#128#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/tokens.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/int1.txt">
+    <entry file="file:///usr/include/c++/8.2.1/bits/hashtable.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="16" selection-end-line="210" />
+        <state relative-caret-position="96">
+          <caret line="642" selection-start-line="642" selection-end-line="642" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/int.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FiniteMachines/TrieBasedFiniteMachine.cpp">
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/ReservedWordsFiniteMachine.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="240">
+          <caret line="123" column="48" selection-start-line="123" selection-start-column="48" selection-end-line="123" selection-end-column="48" />
+          <folding>
+            <element signature="e#248#3090#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/OutFormats.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/PreprocessorFiniteMachine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+          <folding>
+            <element signature="e#127#158#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/SingletonFiniteMachineFabric.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-640">
-          <caret line="20" column="80" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="80" />
+        <state relative-caret-position="90">
+          <caret line="67" column="80" selection-start-line="67" selection-start-column="80" selection-end-line="67" selection-end-column="80" />
           <folding>
             <element signature="e#135#184#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/Utils/string-utils.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        <state relative-caret-position="436">
+          <caret line="54" column="6" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
           <folding>
-            <element signature="e#67#91#0" expanded="true" />
+            <element signature="e#101#118#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8.2.1/bits/basic_string.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="436" selection-start-line="436" selection-end-line="436" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Utils/TokenRecognizer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="e#106#124#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8.2.1/bits/shared_ptr_base.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="993" selection-start-line="993" selection-end-line="993" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utils/trie.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        <state relative-caret-position="180">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
           <folding>
             <element signature="e#84#108#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FiniteMachines/OperatorsStateMachine.h">
+    <entry file="file://$PROJECT_DIR$/Utils/TokenRecognizer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+        <state relative-caret-position="106">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
+          <folding>
+            <element signature="e#106#124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tokens/Token.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
+          <folding>
+            <element signature="e#86#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="100" column="47" lean-forward="true" selection-start-line="100" selection-start-column="47" selection-end-line="100" selection-end-column="47" />
+          <folding>
+            <element signature="e#67#91#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FiniteMachines/PreprocessorFiniteMachine.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding>
+            <element signature="e#41#79#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -28,6 +28,10 @@ protected:
         }
     }
 
+    bool advance(char symbol) override {
+        return true;
+    }
+
     void preProcess() override {
         token_->type = TokenTypes::Operator;
     }

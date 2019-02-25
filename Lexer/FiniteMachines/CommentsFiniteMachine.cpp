@@ -76,6 +76,6 @@ void CommentsFiniteMachine::fifthState(char symbol) {
         public_state_ = State::Ended;
 }
 
-State CommentsFiniteMachine::processString(std::string str, int &i, int row) {
+State CommentsFiniteMachine::processString(const string &str, int &i, int row) {
     return State::Ended;
 }

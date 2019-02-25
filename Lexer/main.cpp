@@ -8,12 +8,15 @@
 #include "FiniteMachines/ReservedWordsFiniteMachine.h"
 #include "Utils/trie.h"
 #include "Utils/TokenRecognizer.h"
+#include "Tokens/PreprocessorToken.h"
+
 using namespace std;
   
 
 
 // Driver 
 int main() {
+    std::cout << "\e[1mBold\e[0m non-bold" << std::endl;
     // Input keys (use only 'a' through 'z' 
     // and lower case) 
     string binary_operators[] = {"+", "-", "*", "/", "%", "=", "&", "|", ">", "<", "&", "!", "^", ">>", "<<"};
@@ -77,7 +80,7 @@ int main() {
     FiniteStateMachine *machine = new NumbersFiniteMachine();
     row_number = 1;
     State state;
-    Token * token = nullptr;
+    std::shared_ptr<Token> token = nullptr;
     while (getline(file, line)) {
         int i = 0;
         while (i < line.size()) {
@@ -91,11 +94,18 @@ int main() {
                     token = TokenRecognizer::recognizeToken(line, i, row_number);
                     tokens_file << *token << '\n';
                     token->printColored();
+                    if (token->type == TokenTypes::Preprocessor) {
+                        std::shared_ptr<PreprocessorToken> preToken = std::dynamic_pointer_cast<PreprocessorToken>(token);
+                        cout << ' ';
+                        for (auto &arg: preToken->args)
+                            cout << arg << ' ';
+                    }
                 } catch (std::runtime_error &e) {
                     for (int j = start; j < i; j++)
                         cout << line[j];
-                   // cout << e.what() << endl;
+                //    delete token;
                 }
+                   // cout << e.what() << endl;
             }
         }
         //cout<<"row: " << row_number << endl;

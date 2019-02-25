@@ -19,7 +19,7 @@ protected:
     void startState(char symb);
 
     void consumingStringState(char symb);
-    State processString(std::string str, int &i, int row) override;
+    State processString(const string &str, int &i, int row) override;
 
     void consumingSpecialSymbolState(char symb);
 };

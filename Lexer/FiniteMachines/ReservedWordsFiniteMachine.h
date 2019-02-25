@@ -120,6 +120,10 @@ protected:
         }
     }
 
+    bool advance(char symbol) override {
+        return isalnum(symbol) || symbol == '_';
+    }
+
     void preProcess() override {
         token_->type = TokenTypes::ReservedWord;
     }

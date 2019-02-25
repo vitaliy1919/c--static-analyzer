@@ -22,7 +22,7 @@ public:
         inner_state_ = 0;
     }
 
-    State processString(std::string str, int &i, int row) override;
+    State processString(const string &str, int &i, int row) override;
 
 
 };
