@@ -9,6 +9,7 @@
 #include "../FiniteMachines/FiniteStateMachine.h"
 #include "../FiniteMachines/NumbersFiniteMachine.h"
 #include "../FiniteMachines/StringLiteralFiniteMachine.h"
+#include "../FiniteMachines/CharLiteralFiniteMachine.h"
 #include "../FiniteMachines/OperatorsStateMachine.h"
 #include "../FiniteMachines/CommentsFiniteMachine.h"
 #include "../FiniteMachines/ReservedWordsFiniteMachine.h"
@@ -27,6 +28,7 @@ private:
     static shared_ptr<ReservedWordsFiniteMachine> reserved_words_finite_machine_;
     static shared_ptr<IdentifiersFiniteMachine> indentifiers_finite_machine_;
     static shared_ptr<PreprocessorFiniteMachine> preprocessor_finite_machine_;
+    static shared_ptr<CharLiteralFiniteMachine> char_literal_finite_machine_;
 
 
 public:
@@ -70,6 +72,12 @@ public:
             preprocessor_finite_machine_ = make_shared<PreprocessorFiniteMachine>();
         return preprocessor_finite_machine_;
     }
+
+    static shared_ptr<CharLiteralFiniteMachine> createCharLiteralFiniteMachine() {
+        if (char_literal_finite_machine_ == nullptr)
+            char_literal_finite_machine_ = make_shared<CharLiteralFiniteMachine>();
+        return char_literal_finite_machine_;
+    }
 };
 shared_ptr<StringLiteralFiniteMachine> SingletonFiniteMachineFabric::string_literal_finite_machine_;
 shared_ptr<NumbersFiniteMachine> SingletonFiniteMachineFabric::numbers_finite_machine_;
@@ -78,6 +86,6 @@ shared_ptr<CommentsFiniteMachine> SingletonFiniteMachineFabric::comments_finite_
 shared_ptr<ReservedWordsFiniteMachine> SingletonFiniteMachineFabric::reserved_words_finite_machine_;
 shared_ptr<IdentifiersFiniteMachine> SingletonFiniteMachineFabric::indentifiers_finite_machine_;
 shared_ptr<PreprocessorFiniteMachine> SingletonFiniteMachineFabric::preprocessor_finite_machine_;
-
+shared_ptr<CharLiteralFiniteMachine> SingletonFiniteMachineFabric::char_literal_finite_machine_;
 
 #endif //LEXER_SINGLETEONFINITEMACHINEFABRIC_H

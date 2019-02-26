@@ -31,6 +31,7 @@ public:
     virtual State onInput(char symbol);
     virtual State processString(const string &str, int &i, int row) = 0;
 
+    virtual ~FiniteStateMachine() {}
 };
 
 

@@ -13,6 +13,7 @@ enum class TokenTypes {
     Number,
     Operator,
     StringLiteral,
+    CharLiteral,
     ReservedWord,
     Comment,
     PunctuationMark,
@@ -66,6 +67,9 @@ public:
                 break;
             case TokenTypes::Operator:
                 std::cout <<ANSI_YELLOW;
+                break;
+            case TokenTypes::CharLiteral:
+                std::cout <<ANSI_BOLD<<ANSI_RED;
                 break;
             case TokenTypes::ReservedWord:
                 std::cout << ANSI_BOLD << ANSI_BLUE;

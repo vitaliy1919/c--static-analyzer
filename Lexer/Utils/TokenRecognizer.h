@@ -29,7 +29,7 @@ public:
         if (!tokenProcessed) {
             machine = SingletonFiniteMachineFabric::createCommentsFiniteMachine();
         } else if (isPunctuationMark(str[i])) {
-            std::shared_ptr<Token> token = std::make_shared<Token>(row, i, i  + 1, string(1, str[i]));
+            std::shared_ptr<Token> token = std::make_shared<Token>(row, i, i + 1, string(1, str[i]));
             token->type = TokenTypes::PunctuationMark;
             i++;
             return token;
@@ -42,46 +42,50 @@ public:
         } else if (isdigit(str[i]))
             machine = SingletonFiniteMachineFabric::createNumbersFiniteMachine();
         else if (str[i] == '.') {
-            if (i < len - 1 && isdigit(str[i+1]))
+            if (i < len - 1 && isdigit(str[i + 1]))
                 machine = SingletonFiniteMachineFabric::createNumbersFiniteMachine();
             else
                 machine = SingletonFiniteMachineFabric::createOperatorsFiniteMachine();
         } else if (str[i] == '\"') {
             machine = SingletonFiniteMachineFabric::createStringLiteralFiniteMachine();
+        } else if (str[i] == '\'' ||
+                   (i + 1 < len && str[i + 1] == '\'') ||
+                   (i + 2 < len && str[i + 2] == '\'')) {
+            machine = SingletonFiniteMachineFabric::createCharLiteralFiniteMachine();
         } else if (str[i] == '#') {
             machine = SingletonFiniteMachineFabric::createPreprocessorFiniteMachine();
         } else if (isalpha(str[i]) || str[i] == '_') {
-                machine = SingletonFiniteMachineFabric::createReservedWordsFiniteMachine();
-                int start = i;
-                State stateReserved = machine->processString(str, i, row);
-                std::shared_ptr<Token> tokenReserved = nullptr;
-                if (stateReserved == State::Ended) {
-                    tokenReserved = machine->getToken();
-                }
-                std::string string1 = R"(dudu)";
-                int lengthIndetifier, lengthReserved;
-                lengthReserved = i - start;
-                i = start;
-                machine = SingletonFiniteMachineFabric::createIndentifiersFiniteMachine();
-                std::shared_ptr<Token> tokenIndentifier = nullptr;
-                State stateIndentifier = machine->processString(str, i, row);
-                lengthIndetifier = i - start;
-                if (stateIndentifier == State::Ended) {
-                    tokenIndentifier = machine->getToken();
-                }
+            machine = SingletonFiniteMachineFabric::createReservedWordsFiniteMachine();
+            int start = i;
+            State stateReserved = machine->processString(str, i, row);
+            std::shared_ptr<Token> tokenReserved = nullptr;
+            if (stateReserved == State::Ended) {
+                tokenReserved = machine->getToken();
+            }
+            std::string string1 = R"(dudu)";
+            int lengthIndetifier, lengthReserved;
+            lengthReserved = i - start;
+            i = start;
+            machine = SingletonFiniteMachineFabric::createIndentifiersFiniteMachine();
+            std::shared_ptr<Token> tokenIndentifier = nullptr;
+            State stateIndentifier = machine->processString(str, i, row);
+            lengthIndetifier = i - start;
+            if (stateIndentifier == State::Ended) {
+                tokenIndentifier = machine->getToken();
+            }
 
-                if (tokenIndentifier == nullptr && tokenReserved == nullptr)
-                    throw std::runtime_error("token not recognized: " + toString(*machine->getToken()));
+            if (tokenIndentifier == nullptr && tokenReserved == nullptr)
+                throw std::runtime_error("token not recognized: " + toString(*machine->getToken()));
 
-                if (tokenReserved == nullptr) {
-                    return tokenIndentifier;
-                } else if (tokenIndentifier == nullptr) {
-                    return tokenReserved;
-                } else if (lengthIndetifier > lengthReserved) {
-                    return tokenIndentifier;
-                } else {
-                    return tokenReserved;
-                }
+            if (tokenReserved == nullptr) {
+                return tokenIndentifier;
+            } else if (tokenIndentifier == nullptr) {
+                return tokenReserved;
+            } else if (lengthIndetifier > lengthReserved) {
+                return tokenIndentifier;
+            } else {
+                return tokenReserved;
+            }
         } else {
             machine = SingletonFiniteMachineFabric::createOperatorsFiniteMachine();
 //            i++;
