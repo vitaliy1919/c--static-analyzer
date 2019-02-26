@@ -3,6 +3,7 @@
 //
 
 #include "CommentsFiniteMachine.h"
+#include "../Tokens/CommentToken.h"
 #include <stdexcept>
 State CommentsFiniteMachine::handleInput(char symbol) {
     if (public_state_ != State::Running) {
@@ -67,7 +68,7 @@ void CommentsFiniteMachine::fourthState(char symbol) {
     if (symbol == '/') {
         public_state_ = State::Ended;
     } else {
-        public_state_ = State::Undefined;
+        inner_state_ --;
     }
 }
 
@@ -77,5 +78,40 @@ void CommentsFiniteMachine::fifthState(char symbol) {
 }
 
 State CommentsFiniteMachine::processString(const string &str, int &i, int row) {
-    return State::Ended;
+
+    State state;
+    if (isFirstLine) {
+        isFirstLine = false;
+        token_ = std::make_shared<CommentToken>();
+        token_->row = row;
+        token_->t_start = i;
+        token_->type = TokenTypes::Comment;
+    }
+
+    bool lineEnded  = false;
+    do {
+        char symb;
+        if (i < str.length()) {
+            symb = str[i];
+        } else {
+            symb = '\n';
+            lineEnded = true;
+        }
+        state = handleInput(symb);
+
+        if (public_state_ != State::Undefined && (symb != '\n' || inner_state_ != 4))
+            token_->value += symb;
+
+        i++;
+    } while (!lineEnded && public_state_ != State::Undefined && public_state_ != State ::Ended);
+    if (public_state_ == State::Undefined)
+        i--;
+    if (public_state_ == State::Ended) {
+        token_->t_end = i;
+        std::shared_ptr<CommentToken> comment_token = std::dynamic_pointer_cast<CommentToken>(token_);
+        comment_token->row_end = row;
+        isFirstLine = true;
+    }
+
+    return public_state_;
 }

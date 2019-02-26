@@ -44,7 +44,7 @@ State IdentifiersFiniteMachine::handleInput(char symbol) {
 }
 
 void IdentifiersFiniteMachine::startState(char symbol) {
-    if (isalpha(symbol))
+    if (isalpha(symbol) || symbol == '_')
         current_state_ = IndentifierState::ConstumingState;
     else
         public_state_ = State::Undefined;

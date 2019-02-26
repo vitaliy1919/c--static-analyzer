@@ -18,12 +18,11 @@ State PreprocessorFiniteMachine::processString(const string &str, int &i, int ro
     std::string directive = parseTokenBySpace(str, i);
     preprocessorToken->value = '#' + directive;
     if (preprocessorDirectives_.find(directive)) {
-        while (i < len) {
-            directive = parseTokenBySpace(str, i);
-        }
-        preprocessorToken->args.push_back(directive);
+//        while (i < len) {
+//            directive = parseTokenBySpace(str, i);
+//            preprocessorToken->args.push_back(directive);
+//        }
         preprocessorToken->t_end = i;
-        token_ = preprocessorToken;
     } else {
         return State::Undefined;
     }

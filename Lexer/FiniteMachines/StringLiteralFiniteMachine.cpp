@@ -38,9 +38,10 @@ State StringLiteralFiniteMachine::processString(const string &str, int &i, int r
     do {
         if (i < str.length())
             state = handleInput(str[i]);
-        else
+        else if (i == str.length())
             state = handleInput('\n');
-
+        else
+            public_state_ = State::Undefined;
         if (public_state_ != State::Undefined)
             token_->value += str[i];
 

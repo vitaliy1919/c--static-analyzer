@@ -32,7 +32,7 @@ inline bool isTerminateSymbol(char symb) {
 }
 
 inline bool isPunctuationMark(char symb) {
-    char punctuation_marks[] = {',', ';', '{', '}', '[', ']'};
+    char punctuation_marks[] = {',', ';', '{', '}', '[', ']', '\\'};
     for (char mark: punctuation_marks)
         if (symb == mark)
             return true;

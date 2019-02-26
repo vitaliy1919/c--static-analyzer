@@ -81,19 +81,23 @@ int main() {
     row_number = 1;
     State state;
     std::shared_ptr<Token> token = nullptr;
+    TokenRecognizer tokenRecognizer;
     while (getline(file, line)) {
         int i = 0;
+        cout << std::setprecision(6) << row_number <<": ";
         while (i < line.size()) {
-            if (line[i] == ' ') {
+            if (tokenRecognizer.isTokenProcessed() && line[i] == ' ') {
                 cout << line[i];
-
                 i++;
             } else {
                 int start = i;
                 try {
-                    token = TokenRecognizer::recognizeToken(line, i, row_number);
-                    tokens_file << *token << '\n';
-                    token->printColored();
+                    token = tokenRecognizer.recognizeToken(line, i, row_number);
+                    if (tokenRecognizer.isTokenProcessed()) {
+                        token->printColored();
+                        tokens_file << *token << '\n';
+                    } else
+                        continue;
                     if (token->type == TokenTypes::Preprocessor) {
                         std::shared_ptr<PreprocessorToken> preToken = std::dynamic_pointer_cast<PreprocessorToken>(token);
                         cout << ' ';
@@ -109,7 +113,8 @@ int main() {
             }
         }
         //cout<<"row: " << row_number << endl;
-        cout << '\n';
+        if (tokenRecognizer.isTokenProcessed())
+            cout << '\n';
         row_number++;
     }
 

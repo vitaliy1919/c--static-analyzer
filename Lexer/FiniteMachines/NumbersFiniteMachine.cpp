@@ -20,9 +20,9 @@ State NumbersFiniteMachine::processString(const string &str, int &i, int row) {
     do {
         if (i < str.length())
             state = handleInput(str[i]);
-        else
+        else if (i == str.length())
             state = handleInput('\n');
-
+        else public_state_ = State::Undefined;
         if (public_state_ != State::Undefined && !token_omit_symbol_)
             token_->value += str[i];
 

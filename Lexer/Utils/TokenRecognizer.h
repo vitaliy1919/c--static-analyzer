@@ -16,20 +16,33 @@ using std::pair;
 using std::make_pair;
 using std::shared_ptr;
 class TokenRecognizer {
+private:
+    bool tokenProcessed = true;
 public:
-    static std::shared_ptr<Token> recognizeToken(std::string str, int& i, int row) {
+    bool isTokenProcessed() const {
+        return tokenProcessed;
+    }
+
+    std::shared_ptr<Token> recognizeToken(std::string str, int& i, int row) {
         shared_ptr<FiniteStateMachine> machine;
-        if (isPunctuationMark(str[i])) {
+        size_t len = str.size();
+        if (!tokenProcessed) {
+            machine = SingletonFiniteMachineFabric::createCommentsFiniteMachine();
+        } else if (isPunctuationMark(str[i])) {
             std::shared_ptr<Token> token = std::make_shared<Token>(row, i, i  + 1, string(1, str[i]));
             token->type = TokenTypes::PunctuationMark;
             i++;
             return token;
         } else if (str[i] == '/') {
-            machine = SingletonFiniteMachineFabric::createOperatorsFiniteMachine();
+            if (i < len - 1 && (str[i + 1] == '/' || str[i + 1] == '*')) {
+                machine = SingletonFiniteMachineFabric::createCommentsFiniteMachine();
+            } else {
+                machine = SingletonFiniteMachineFabric::createOperatorsFiniteMachine();
+            }
         } else if (isdigit(str[i]))
             machine = SingletonFiniteMachineFabric::createNumbersFiniteMachine();
         else if (str[i] == '.') {
-            if (isdigit(str[i+1]))
+            if (i < len - 1 && isdigit(str[i+1]))
                 machine = SingletonFiniteMachineFabric::createNumbersFiniteMachine();
             else
                 machine = SingletonFiniteMachineFabric::createOperatorsFiniteMachine();
@@ -37,7 +50,7 @@ public:
             machine = SingletonFiniteMachineFabric::createStringLiteralFiniteMachine();
         } else if (str[i] == '#') {
             machine = SingletonFiniteMachineFabric::createPreprocessorFiniteMachine();
-        } else if (isalpha(str[i])) {
+        } else if (isalpha(str[i]) || str[i] == '_') {
                 machine = SingletonFiniteMachineFabric::createReservedWordsFiniteMachine();
                 int start = i;
                 State stateReserved = machine->processString(str, i, row);
@@ -45,6 +58,7 @@ public:
                 if (stateReserved == State::Ended) {
                     tokenReserved = machine->getToken();
                 }
+                std::string string1 = R"(dudu)";
                 int lengthIndetifier, lengthReserved;
                 lengthReserved = i - start;
                 i = start;
@@ -76,8 +90,13 @@ public:
         }
 
         State state = machine->processString(str, i, row);
-        if (state == State::Ended)
+        if (state == State::Ended) {
+            tokenProcessed = true;
             return machine->getToken();
+        } else if (state == State::Running) {
+            tokenProcessed = false;
+            return nullptr;
+        }
         throw std::runtime_error("token not recognized: "+toString(*machine->getToken()));
     }
 };

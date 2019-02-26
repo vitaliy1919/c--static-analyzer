@@ -14,6 +14,8 @@ private:
     State thirdState(char symbol);
     void fourthState(char symbol);
     void fifthState(char symbol);
+
+    bool isFirstLine = true;
 protected:
 
     virtual State handleInput(char symbol) override;
