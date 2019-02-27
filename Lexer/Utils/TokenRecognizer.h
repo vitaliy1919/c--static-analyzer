@@ -46,7 +46,9 @@ public:
                 machine = SingletonFiniteMachineFabric::createNumbersFiniteMachine();
             else
                 machine = SingletonFiniteMachineFabric::createOperatorsFiniteMachine();
-        } else if (str[i] == '\"') {
+        } else if (str[i] == '\"' ||
+                (i + 1 < len && str[i + 1] == '\"') ||
+                (i + 2 < len && str[i + 2] == '\"')) {
             machine = SingletonFiniteMachineFabric::createStringLiteralFiniteMachine();
         } else if (str[i] == '\'' ||
                    (i + 1 < len && str[i + 1] == '\'') ||

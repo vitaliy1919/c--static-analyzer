@@ -69,7 +69,7 @@ public:
                 std::cout <<ANSI_YELLOW;
                 break;
             case TokenTypes::CharLiteral:
-                std::cout <<ANSI_BOLD<<ANSI_RED;
+                std::cout <<ANSI_BOLD<<ANSI_PURPLE;
                 break;
             case TokenTypes::ReservedWord:
                 std::cout << ANSI_BOLD << ANSI_BLUE;

@@ -31,66 +31,27 @@ State CharLiteralFiniteMachine::processString(const string &str, int &i, int row
 
 State CharLiteralFiniteMachine::handleInput(char symbol) {
     if (public_state_ != State::Running) {
-        current_state_ = CharLiteralStates::StartState;
+        current_state_ = LiteralStates::StartState;
         public_state_ = State::Running;
     }
 
     switch (current_state_) {
-        case CharLiteralStates::StartState:
-            startState(symbol);
+        case LiteralStates::StartState:
+            handlers_.startState(symbol);
             break;
-        case CharLiteralStates::QuoteState:
-            quoteState(symbol);
+        case LiteralStates::QuoteState:
+            handlers_.quoteState(symbol);
             break;
-        case CharLiteralStates::PrefixState:
-            prefixState(symbol);
+        case LiteralStates::PrefixState:
+            handlers_.prefixState(symbol);
             break;
-        case CharLiteralStates::PrefixRemainderState:
-            prefixRemainderState(symbol);
+        case LiteralStates::PrefixRemainderState:
+            handlers_.prefixRemainderState(symbol);
             break;
-        case CharLiteralStates::EscapeSymbolState:
-            escapeSymbolState(symbol);
+        case LiteralStates::EscapeSymbolState:
+            handlers_.escapeSymbolState(symbol);
             break;
     }
     return public_state_;
 }
 
-void CharLiteralFiniteMachine::startState(char symbol) {
-    if (tolower(symbol) == 'l' || symbol == 'U') {
-        current_state_ = CharLiteralStates::PrefixState;
-    } else if (symbol == 'u') {
-        current_state_ = CharLiteralStates::PrefixRemainderState;
-    } else if (symbol == '\'') {
-        current_state_ = CharLiteralStates::QuoteState;
-    } else
-        public_state_ = State::Undefined;
-
-}
-
-void CharLiteralFiniteMachine::quoteState(char symbol) {
-    if (symbol == '\\') {
-        current_state_ = CharLiteralStates::EscapeSymbolState;
-    } else if (symbol == '\'') {
-        public_state_ = State::Ended;
-    }
-}
-
-void CharLiteralFiniteMachine::prefixState(char symbol) {
-    if (symbol == '\'')
-        current_state_ = CharLiteralStates::QuoteState;
-    else
-        public_state_ = State::Undefined;
-}
-
-void CharLiteralFiniteMachine::prefixRemainderState(char symbol) {
-    if (symbol == '8') {
-        current_state_ = CharLiteralStates::PrefixState;
-    } else if (symbol == '\'') {
-        current_state_ = CharLiteralStates::QuoteState;
-    } else
-        public_state_ = State::Undefined;
-}
-
-void CharLiteralFiniteMachine::escapeSymbolState(char symbol) {
-    current_state_ = CharLiteralStates::QuoteState;
-}

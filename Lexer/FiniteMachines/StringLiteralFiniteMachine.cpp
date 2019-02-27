@@ -4,71 +4,139 @@
 
 #include "StringLiteralFiniteMachine.h"
 
-State StringLiteralFiniteMachine::handleInput(char symb) {
+State StringLiteralFiniteMachine::handleInput(char symbol) {
     if (public_state_ != State::Running) {
-        inner_state_ = START;
+        is_raw_string_ = false;
+        delimiter.clear();
+        current_state_ = LiteralStates::StartState;
         public_state_ = State::Running;
     }
-
-    switch (inner_state_) {
-        case START:
-            startState(symb);
-            break;
-        case CONSUMING_STRING:
-            consumingStringState(symb);
-            break;
-        case SPECIAL_SYMBOL:
-            consumingSpecialSymbolState(symb);
-            break;
-        default:
-            break;
+    if (!is_raw_string_) {
+        switch (current_state_) {
+            case LiteralStates::StartState:
+                if (tolower(symbol) != 'r')
+                    handlers_.startState(symbol);
+                else {
+                    is_raw_string_ = true;
+                    cur_pos_++;
+                    if (cur_pos_ >= line_.size())
+                        public_state_ = State::Undefined;
+                    else {
+                        token_->value += symbol;
+                        rState(line_[cur_pos_]);
+                    }
+                }
+                break;
+            case LiteralStates::QuoteState:
+                handlers_.quoteState(symbol);
+                break;
+            case LiteralStates::PrefixState:
+                handlers_.prefixState(symbol);
+                break;
+            case LiteralStates::PrefixRemainderState:
+                handlers_.prefixRemainderState(symbol);
+                break;
+            case LiteralStates::EscapeSymbolState:
+                handlers_.escapeSymbolState(symbol);
+                break;
+        }
+    } else {
+        switch (raw_string_state_) {
+            case RawStringState::DelimiterConsumeState:
+                delimiterConsumeState(symbol);
+                break;
+            case RawStringState::LiteralConsumingState:
+                literalConsumingState(symbol);
+                break;
+            case RawStringState::ClosingDelimiterState:
+                closingDelimiterState(symbol);
+                break;
+            case RawStringState::CloseQuoteState:
+                closeQuoteState(symbol);
+                break;
+        }
     }
-
-    if (public_state_ != State::Undefined)
-        current_string_ += symb;
     return public_state_;
 }
 
 State StringLiteralFiniteMachine::processString(const string &str, int &i, int row) {
     State state;
+    line_ = str;
     token_ = std::make_shared<Token>();
     token_->row = row;
     token_->type = TokenTypes::StringLiteral;
     token_->t_start = i;
+    cur_pos_ = i;
     do {
-        if (i < str.length())
-            state = handleInput(str[i]);
-        else if (i == str.length())
+        if (cur_pos_ < str.length())
+            state = handleInput(str[cur_pos_]);
+        else if (cur_pos_ == str.length())
             state = handleInput('\n');
         else
             public_state_ = State::Undefined;
-        if (public_state_ != State::Undefined)
-            token_->value += str[i];
-
-        i++;
+        if (state != State::Undefined && !is_raw_string_)
+            token_->value += str[cur_pos_];
+        cur_pos_++;
     } while (public_state_ != State::Undefined && public_state_ != State ::Ended);
-    token_->t_end = i;
+//    if (public_state_ == State::Undefined)
+//        i--;
+    if (cur_pos_ >= str.length())
+        token_->t_end = cur_pos_ - 1;
+    else
+        token_->t_end = cur_pos_;
+
+    i = cur_pos_;
     return public_state_;
 }
 
-void StringLiteralFiniteMachine::startState(char symb) {
-    if (symb == '\"') {
-        inner_state_ = CONSUMING_STRING;
+void StringLiteralFiniteMachine::rState(char symbol) {
+    if (symbol == '\"') {
+        token_->value += symbol;
+        raw_string_state_ = RawStringState::DelimiterConsumeState;
+    } else
+        public_state_ = State::Undefined;
+}
+
+void StringLiteralFiniteMachine::delimiterConsumeState(char symbol) {
+    token_->value += symbol;
+    if (symbol == '(') {
+        raw_string_state_ = RawStringState::LiteralConsumingState;
     } else {
-        public_state_ = State ::Undefined;
+        delimiter += symbol;
+    }
+
+}
+
+void StringLiteralFiniteMachine::literalConsumingState(char symbol) {
+    token_->value += symbol;
+    if (symbol == ')') {
+        raw_string_state_ = RawStringState::ClosingDelimiterState;
     }
 }
 
-void StringLiteralFiniteMachine::consumingStringState(char symb) {
-    if (symb == '\\') {
-        inner_state_ = SPECIAL_SYMBOL;
-    } else if (symb == '\"') {
+void StringLiteralFiniteMachine::closingDelimiterState(char symbol) {
+    bool isDelimiter = true;
+    for (int i = 0; i < delimiter.size(); i++) {
+        if (line_[cur_pos_ + i] != delimiter[i]) {
+            isDelimiter = false;
+            break;
+        }
+    }
+
+    if (isDelimiter) {
+        raw_string_state_ = RawStringState::CloseQuoteState;
+        token_->value += delimiter;
+        cur_pos_+=delimiter.size() - 1;
+    } else
+        raw_string_state_ = RawStringState::LiteralConsumingState;
+}
+
+void StringLiteralFiniteMachine::closeQuoteState(char symbol) {
+    token_->value += symbol;
+    if (symbol == '\"')
         public_state_ = State::Ended;
-    }
-
+    else
+        public_state_ = State::Undefined;
 }
 
-void StringLiteralFiniteMachine::consumingSpecialSymbolState(char symb) {
-    inner_state_ = CONSUMING_STRING;
-}
 

@@ -7,36 +7,23 @@
 
 
 #include "FiniteStateMachine.h"
+#include "../Utils/LiteralStatesHandlers.h"
 
-enum class CharLiteralStates {
-    StartState,
-    QuoteState,
-    EscapeSymbolState,
-    PrefixRemainderState,
-    PrefixState
-};
 
 class CharLiteralFiniteMachine: public FiniteStateMachine {
 
 private:
-    CharLiteralStates current_state_;
+    LiteralStates current_state_ = LiteralStates::StartState;
+    LiteralStatesHandlers handlers_;
 protected:
     State handleInput(char symbol) override;
 
 public:
-    
-    
+    CharLiteralFiniteMachine(): handlers_('\'', public_state_, current_state_) {
+
+    }
+
     State processString(const string &str, int &i, int row) override;
-
-    void startState(char symbol);
-
-    void quoteState(char symbol);
-
-    void prefixState(char symbol);
-
-    void prefixRemainderState(char symbol);
-
-    void escapeSymbolState(char symbol);
 };
 
 

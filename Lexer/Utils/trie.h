@@ -103,6 +103,23 @@ public:
         }
         return iter->isEndOfWord;
     }
+
+    size_t findFirstOccurence(const std::string& str, int i) {
+        if (root_ == nullptr)
+            return std::string::npos;
+        TrieNode *iter = root_;
+        do {
+            if (iter->isEndOfWord)
+                return i;
+            auto &letters = iter->children;
+            if (letters.in(str[i])) {
+                iter = letters[str[i]];
+            } else
+                return std::string::npos;
+        } while (iter != nullptr);
+        return std::string::npos;
+
+    }
     bool findMaxSubstring(std::string str, int& i, bool (*adv)(char)) {
         TrieNode *iter = root_;
         bool flag = false;

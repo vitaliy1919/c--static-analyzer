@@ -106,7 +106,8 @@ int main() {
                     }
                 } catch (std::runtime_error &e) {
                     for (int j = start; j < i; j++)
-                        cout << line[j];
+                        if (j < line.length())
+                            cout << line[j];
                 //    delete token;
                 }
                    // cout << e.what() << endl;
