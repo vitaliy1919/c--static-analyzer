@@ -59,6 +59,43 @@ public:
         return os.str();
     }
 
+    void printColor() {
+        switch (type) {
+            case TokenTypes::Number:
+                std::cout<<ANSI_RED;
+                break;
+            case TokenTypes::Operator:
+                std::cout <<ANSI_YELLOW;
+                break;
+            case TokenTypes::CharLiteral:
+                std::cout <<ANSI_BOLD<<ANSI_PURPLE;
+                break;
+            case TokenTypes::ReservedWord:
+                std::cout << ANSI_BOLD << ANSI_BLUE;
+                break;
+            case TokenTypes::StringLiteral:
+                std::cout << ANSI_BLUE;
+                break;
+            case TokenTypes::Comment:
+                std::cout << ANSI_GREEN;
+                break;
+            case TokenTypes ::PunctuationMark:
+                std::cout << ANSI_PURPLE;
+                break;
+            case TokenTypes ::Indentifier:
+                std::cout << ANSI_CYAN;
+                break;
+            case TokenTypes::Preprocessor:
+                std::cout << ANSI_BOLD << ANSI_GREEN;
+                break;
+        }
+    }
+
+    void resetColor() {
+        std::cout << ANSI_RESET;
+    }
+
+
     void printColored() {
        //std::cout<<ANSI_BOLD<<"test"<<ANSI_RESET;
         switch (type) {

@@ -18,16 +18,32 @@ using std::shared_ptr;
 class TokenRecognizer {
 private:
     bool tokenProcessed = true;
+    bool lastLine = false;
+    bool token_recognized = false;
 public:
     bool isTokenProcessed() const {
         return tokenProcessed;
     }
 
+    bool isLastLine() const {
+        return lastLine;
+    }
+
+    void setLastLine(bool lastLine) {
+        TokenRecognizer::lastLine = lastLine;
+    }
+    std::shared_ptr<Token> inputEOF() {
+        if (!tokenProcessed) {
+            return SingletonFiniteMachineFabric::createCommentsFiniteMachine()->getToken();
+        } else return nullptr;
+    }
     std::shared_ptr<Token> recognizeToken(std::string str, int& i, int row) {
         shared_ptr<FiniteStateMachine> machine;
         size_t len = str.size();
+        bool is_comment = false;
         if (!tokenProcessed) {
             machine = SingletonFiniteMachineFabric::createCommentsFiniteMachine();
+            is_comment = true;
         } else if (isPunctuationMark(str[i])) {
             std::shared_ptr<Token> token = std::make_shared<Token>(row, i, i + 1, string(1, str[i]));
             token->type = TokenTypes::PunctuationMark;
@@ -36,6 +52,7 @@ public:
         } else if (str[i] == '/') {
             if (i < len - 1 && (str[i + 1] == '/' || str[i + 1] == '*')) {
                 machine = SingletonFiniteMachineFabric::createCommentsFiniteMachine();
+                is_comment = true;
             } else {
                 machine = SingletonFiniteMachineFabric::createOperatorsFiniteMachine();
             }
@@ -98,12 +115,18 @@ public:
         State state = machine->processString(str, i, row);
         if (state == State::Ended) {
             tokenProcessed = true;
+            token_recognized = true;
             return machine->getToken();
         } else if (state == State::Running) {
             tokenProcessed = false;
             return nullptr;
+        } else {
+            token_recognized = false;
         }
-        throw std::runtime_error("token not recognized: "+toString(*machine->getToken()));
+    }
+
+    bool isTokenRecognized() const {
+        return token_recognized;
     }
 };
 

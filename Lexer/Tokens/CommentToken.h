@@ -5,12 +5,13 @@
 #ifndef LEXER_STRINGTOKEN_H
 #define LEXER_STRINGTOKEN_H
 
+#include <vector>
 #include "Token.h"
 
 class CommentToken: public Token {
 public:
     int row_end;
-
+    std::vector<std::string> lines;
 
 };
 #endif //LEXER_STRINGTOKEN_H

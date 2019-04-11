@@ -83,6 +83,8 @@ State CommentsFiniteMachine::processString(const string &str, int &i, int row) {
     if (isFirstLine) {
         isFirstLine = false;
         token_ = std::make_shared<CommentToken>();
+        token_->value.clear();
+        cur_line.clear();
         token_->row = row;
         token_->t_start = i;
         token_->type = TokenTypes::Comment;
@@ -96,22 +98,38 @@ State CommentsFiniteMachine::processString(const string &str, int &i, int row) {
         } else {
             symb = '\n';
             lineEnded = true;
+            std::shared_ptr<CommentToken> comment_token = std::dynamic_pointer_cast<CommentToken>(token_);
+            comment_token->lines.push_back(cur_line);
+            cur_line.clear();
         }
         state = handleInput(symb);
 
-        if (public_state_ != State::Undefined && (symb != '\n' || inner_state_ != 4))
+        if (public_state_ != State::Undefined && (symb != '\n' || inner_state_ != 4)) {
             token_->value += symb;
+            if (symb != '\n')
+            cur_line += symb;
+        }
 
         i++;
     } while (!lineEnded && public_state_ != State::Undefined && public_state_ != State ::Ended);
-    if (public_state_ == State::Undefined)
-        i--;
-    if (public_state_ == State::Ended) {
-        token_->t_end = i;
-        std::shared_ptr<CommentToken> comment_token = std::dynamic_pointer_cast<CommentToken>(token_);
-        comment_token->row_end = row;
+    isLastLine = false;
+    if (public_state_ == State::Undefined) {
         isFirstLine = true;
+        i--;
+    }
+    if (public_state_ == State::Ended) {
+        isFirstLine = true;
+        std::shared_ptr<CommentToken> comment_token = std::dynamic_pointer_cast<CommentToken>(token_);
+        if (!lineEnded)
+            comment_token->lines.push_back(cur_line);
+
+        token_->t_end = i;
+        comment_token->row_end = row;
     }
 
     return public_state_;
+}
+
+void CommentsFiniteMachine::setIsLastLine(bool isLastLine) {
+    CommentsFiniteMachine::isLastLine = isLastLine;
 }

@@ -14,8 +14,9 @@ private:
     State thirdState(char symbol);
     void fourthState(char symbol);
     void fifthState(char symbol);
-
+    std::string cur_line;
     bool isFirstLine = true;
+    bool isLastLine = false;
 protected:
 
     virtual State handleInput(char symbol) override;
@@ -26,6 +27,7 @@ public:
 
     State processString(const string &str, int &i, int row) override;
 
+    void setIsLastLine(bool isLastLine);
 
 };
 

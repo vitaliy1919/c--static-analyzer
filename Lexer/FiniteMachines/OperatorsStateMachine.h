@@ -15,7 +15,7 @@ protected:
     void init() override {
         string binary_operators[] = {"+", "-", "*", "/", "%", "=", "&", "|", ">", "<", "&", "!", "^", ">>", "<<"};
         string double_operators[] = {"++", "--", "&&", "||", "::"};
-        string unary_operators[] = {"(", ")", "~", "->", ".", "?", ":"};
+        string unary_operators[] = {"(", ")", "[", "]", "~", "->", ".", "?", ":"};
         for (int i = 0; i < sizeof(binary_operators) / sizeof(string);i++) {
             trie_.insert(binary_operators[i]);
             trie_.insert(binary_operators[i] + "=");
