@@ -18,7 +18,8 @@ enum class TokenTypes {
     Comment,
     PunctuationMark,
     Indentifier,
-    Preprocessor
+    Preprocessor,
+    Unrecognized
 };
 
 
@@ -47,15 +48,47 @@ public:
     Token() {}
 
     friend std::ostream &operator<<(std::ostream &os, const Token &token) {
-        os << "row: " << token.row << " t_start: " << token.t_start << " t_end: " << token.t_end << " value: "
-           << token.value << " type: ";
+        token.print(os);
         return os;
     }
-
+    template <typename T>
+    void print(T& os) const {
+        os << "(" << row << ", " << t_start + 1 << ", " << t_end + 1 << "): " << value << " , " ;
+        switch (type) {
+            case TokenTypes::Number:
+                os<<"number";
+                break;
+            case TokenTypes::Operator:
+                os <<"operator";
+                break;
+            case TokenTypes::CharLiteral:
+                os <<"char literal";
+                break;
+            case TokenTypes::ReservedWord:
+                os << "reserved word";
+                break;
+            case TokenTypes::StringLiteral:
+                os << "string literal";
+                break;
+            case TokenTypes::Comment:
+                os << "comment";
+                break;
+            case TokenTypes ::PunctuationMark:
+                os << "punctuation mark";
+                break;
+            case TokenTypes ::Indentifier:
+                os << "identifier";
+                break;
+            case TokenTypes::Preprocessor:
+                os << "preprocessor";
+                break;
+            case TokenTypes::Unrecognized:
+                os << "can't recognize this token";
+        }
+    }
     friend std::string toString(const Token &token) {
         std::stringstream os;
-         os << "row: " << token.row << " t_start: " << token.t_start << " t_end: " << token.t_end << " value: "
-           << token.value;
+        token.print(os);
         return os.str();
     }
 

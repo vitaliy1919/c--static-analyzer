@@ -3,6 +3,7 @@
 //
 
 #include "IdentifiersFiniteMachine.h"
+#include "../Utils/string-utils.h"
 
 State IdentifiersFiniteMachine::processString(const string &str, int &i, int row) {
     State state;
@@ -52,7 +53,13 @@ void IdentifiersFiniteMachine::startState(char symbol) {
 }
 
 void IdentifiersFiniteMachine::consumingState(char symbol) {
+    if (!isalpha(symbol) && !isdigit(symbol) && symbol != '_') {
+        if (isIdentifierTerminateSymbol(symbol)) {
+            public_state_ = State::Ended;
+        } else {
+            public_state_ = State::Undefined;
+        }
 
-    if (!isalpha(symbol) && !isdigit(symbol) && symbol != '_')
-        public_state_ = State::Ended;
+    }
+
 }

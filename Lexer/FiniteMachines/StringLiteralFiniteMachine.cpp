@@ -86,6 +86,8 @@ State StringLiteralFiniteMachine::processString(const string &str, int &i, int r
         token_->t_end = cur_pos_;
 
     i = cur_pos_;
+    if (state == State::Undefined)
+        i--;
     return public_state_;
 }
 

@@ -44,7 +44,7 @@ State NumbersFiniteMachine::handleInput(char symbol) {
         token_omit_symbol_ = true;
         return public_state_;
     }
-    token_omit_symbol_ = isTerminateSymbol(symbol);
+    token_omit_symbol_ = isNumberTerminateSymbol(symbol);
     switch (current_state_) {
         case NumberStates::StartState:
             startState(symbol);
@@ -105,7 +105,7 @@ void NumbersFiniteMachine::digitSequenceState(char symbol) {
         current_state_ = NumberStates::DotState;
     else if (tolower(symbol) == 'e') {
         current_state_ = NumberStates::ExponentState;
-    } else if (isTerminateSymbol(symbol) || (tolower(symbol) == 'u')) {
+    } else if (isNumberTerminateSymbol(symbol) || (tolower(symbol) == 'u')) {
         public_state_ = State::Ended;
     } else if (tolower(symbol) == 'l') {
         current_state_ = NumberStates::LongRemainderState;
@@ -114,7 +114,7 @@ void NumbersFiniteMachine::digitSequenceState(char symbol) {
 }
 
 void NumbersFiniteMachine::dotState(char symbol) {
-    if (isTerminateSymbol(symbol) || tolower(symbol) == 'f' || tolower(symbol) == 'l') {
+    if (isNumberTerminateSymbol(symbol) || tolower(symbol) == 'f' || tolower(symbol) == 'l') {
         public_state_ = State::Ended;
     } else if (tolower(symbol) == 'e')
         current_state_ = NumberStates::ExponentState;
@@ -125,7 +125,7 @@ void NumbersFiniteMachine::dotState(char symbol) {
 }
 
 void NumbersFiniteMachine::longRemainderState(char symbol) {
-    if (isTerminateSymbol(symbol) || tolower(symbol) == 'l') {
+    if (isNumberTerminateSymbol(symbol) || tolower(symbol) == 'l') {
         public_state_ = State::Ended;
     } else
         public_state_ = State::Undefined;
@@ -139,7 +139,7 @@ void NumbersFiniteMachine::exponentState(char symbol) {
 }
 
 void NumbersFiniteMachine::exponentDigitsState(char symbol) {
-    if (isTerminateSymbol(symbol) || tolower(symbol) == 'f' || tolower(symbol) == 'l') {
+    if (isNumberTerminateSymbol(symbol) || tolower(symbol) == 'f' || tolower(symbol) == 'l') {
         public_state_ = State::Ended;
     } else if (!isDecDigit(symbol)){
         public_state_ = State::Undefined;
@@ -148,7 +148,7 @@ void NumbersFiniteMachine::exponentDigitsState(char symbol) {
 
 
 void NumbersFiniteMachine::remainderSequenceState(char symbol) {
-    if (isTerminateSymbol(symbol) || tolower(symbol) == 'l' || tolower(symbol) == 'f') {
+    if (isNumberTerminateSymbol(symbol) || tolower(symbol) == 'l' || tolower(symbol) == 'f') {
         public_state_ = State::Ended;
     } else if (tolower(symbol) == 'e') {
         current_state_ = NumberStates::ExponentState;
@@ -158,7 +158,7 @@ void NumbersFiniteMachine::remainderSequenceState(char symbol) {
 }
 
 void NumbersFiniteMachine::zeroSymbolState(char symbol) {
-    if (isTerminateSymbol(symbol) || tolower(symbol) == 'l')
+    if (isNumberTerminateSymbol(symbol) || tolower(symbol) == 'l')
         public_state_ = State::Ended;
     else if (symbol == '.') {
         current_state_ = NumberStates::DotState;
@@ -174,7 +174,7 @@ void NumbersFiniteMachine::zeroSymbolState(char symbol) {
 }
 
 void NumbersFiniteMachine::binDigitSequenceState(char symbol) {
-    if (isTerminateSymbol(symbol) || tolower(symbol) == 'u')
+    if (isNumberTerminateSymbol(symbol) || tolower(symbol) == 'u')
         public_state_ = State::Ended;
     else if (tolower(symbol) == 'l')
         current_state_ = NumberStates::LongRemainderState;
@@ -183,7 +183,7 @@ void NumbersFiniteMachine::binDigitSequenceState(char symbol) {
 }
 
 void NumbersFiniteMachine::octDigitSequenceState(char symbol) {
-    if (isTerminateSymbol(symbol) || tolower(symbol) == 'u')
+    if (isNumberTerminateSymbol(symbol) || tolower(symbol) == 'u')
         public_state_ = State::Ended;
     else if (tolower(symbol) == 'l')
         current_state_ = NumberStates::LongRemainderState;
@@ -196,7 +196,7 @@ void NumbersFiniteMachine::hexDigitSequenceState(char symbol) {
         current_state_ = NumberStates::ExponentState;
     else if (symbol == '.')
         current_state_ = NumberStates::HexDotState;
-    else if (isTerminateSymbol(symbol) || tolower(symbol) == 'u')
+    else if (isNumberTerminateSymbol(symbol) || tolower(symbol) == 'u')
         public_state_ = State::Ended;
     else if (tolower(symbol) == 'l')
         current_state_ = NumberStates::LongRemainderState;
@@ -205,7 +205,7 @@ void NumbersFiniteMachine::hexDigitSequenceState(char symbol) {
 }
 
 void NumbersFiniteMachine::hexDotState(char symbol) {
-    if (isTerminateSymbol(symbol)) {
+    if (isNumberTerminateSymbol(symbol)) {
         public_state_ = State::Ended;
     } else if (tolower(symbol) == 'p')
         current_state_ = NumberStates::ExponentState;

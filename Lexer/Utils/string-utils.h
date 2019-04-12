@@ -25,18 +25,38 @@ inline bool isOctDigit(char symb) {
 inline bool isWhiteSpace(char symb) {
     return symb == ' ' || symb == '\n' || symb == '\t';
 }
-
-inline bool isTerminateSymbol(char symb) {
-    return isWhiteSpace(symb) || symb == ';' || symb == ':' || symb == ',' || symb == '?' || symb == '[' || symb == ']'
-        || (!isdigit(symb) && !isalpha(symb) && symb != '+' && symb != '-' && symb != '.');
-}
-
 inline bool isPunctuationMark(char symb) {
-    char punctuation_marks[] = {',', ';', '{', '}', '[', ']', '\\'};
+    static char punctuation_marks[] = {',', ';', '{', '}', '\\'};
     for (char mark: punctuation_marks)
         if (symb == mark)
             return true;
     return false;
+}
+inline bool isTerminateSymbol(char symb) {
+    return isWhiteSpace(symb) || symb == ';' || symb == ':' || symb == ',' || symb == '?' || symb == '[' || symb == ']'
+        || (!isdigit(symb) && !isalpha(symb) && symb != '+' && symb != '-' && symb != '.');
+}
+inline bool isOperatorFirstSymbol(char symb) {
+    static char operators[] = {'+', '-', '*', '/', '%', '=', '&', '|', '>', '<', '&', '!', '^', '(', ')', '[', ']', '~', '.', '?', ':'};
+    for (char mark: operators)
+        if (symb == mark)
+            return true;
+    return false;
+}
+
+inline bool isNumberTerminateSymbol(char symb) {
+    return symb != '.' && (isWhiteSpace(symb) || isPunctuationMark(symb) || isOperatorFirstSymbol(symb));
+}
+
+inline bool isIdentifierTerminateSymbol(char symb) {
+    return symb == '.' || isNumberTerminateSymbol(symb);
+}
+inline bool isCharLiteralTerminateSymbol(char symb) {
+    return symb != ' ' && isWhiteSpace(symb);
+}
+
+inline bool isStringLiteralTerminateSymbol(char symb) {
+    return isCharLiteralTerminateSymbol(symb);
 }
 
 inline std::string parseTokenBySpace(const std::string& str, int& i) {

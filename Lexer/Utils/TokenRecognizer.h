@@ -64,12 +64,12 @@ public:
             else
                 machine = SingletonFiniteMachineFabric::createOperatorsFiniteMachine();
         } else if (str[i] == '\"' ||
-                (i + 1 < len && str[i + 1] == '\"') ||
-                (i + 2 < len && str[i + 2] == '\"')) {
+                (i + 1 < len && isalpha(str[i]) && str[i + 1] == '\"') ||
+                (i + 2 < len && isalpha(str[i]) && str[i+1] == '8' && str[i + 2] == '\"')) {
             machine = SingletonFiniteMachineFabric::createStringLiteralFiniteMachine();
         } else if (str[i] == '\'' ||
-                   (i + 1 < len && str[i + 1] == '\'') ||
-                   (i + 2 < len && str[i + 2] == '\'')) {
+                   (i + 1 < len && isalpha(str[i]) && str[i + 1] == '\'') ||
+                   (i + 2 < len && isalpha(str[i]) && str[i+1] == '8' && str[i + 2] == '\'')) {
             machine = SingletonFiniteMachineFabric::createCharLiteralFiniteMachine();
         } else if (str[i] == '#') {
             machine = SingletonFiniteMachineFabric::createPreprocessorFiniteMachine();
@@ -93,9 +93,11 @@ public:
                 tokenIndentifier = machine->getToken();
             }
 
-            if (tokenIndentifier == nullptr && tokenReserved == nullptr)
-                throw std::runtime_error("token not recognized: " + toString(*machine->getToken()));
-
+            if (tokenIndentifier == nullptr && tokenReserved == nullptr) {
+                token_recognized = false;
+                return machine->getToken();
+            }
+            token_recognized = true;
             if (tokenReserved == nullptr) {
                 return tokenIndentifier;
             } else if (tokenIndentifier == nullptr) {
@@ -119,9 +121,11 @@ public:
             return machine->getToken();
         } else if (state == State::Running) {
             tokenProcessed = false;
+            token_recognized = false;
             return nullptr;
         } else {
             token_recognized = false;
+            return machine->getToken();
         }
     }
 

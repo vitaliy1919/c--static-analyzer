@@ -3,6 +3,8 @@
 //
 
 #include "LiteralStatesHandlers.h"
+#include "string-utils.h"
+
 void LiteralStatesHandlers::startState(char symbol) {
     if (tolower(symbol) == 'l' || symbol == 'U') {
         current_state_ = LiteralStates::PrefixState;
@@ -20,6 +22,8 @@ void LiteralStatesHandlers::quoteState(char symbol) {
         current_state_ = LiteralStates::EscapeSymbolState;
     } else if (symbol == symbol_) {
         public_state_ = State::Ended;
+    } else if (isCharLiteralTerminateSymbol(symbol)) {
+        public_state_ = State ::Undefined;
     }
 }
 
@@ -40,7 +44,10 @@ void LiteralStatesHandlers::prefixRemainderState(char symbol) {
 }
 
 void LiteralStatesHandlers::escapeSymbolState(char symbol) {
-    current_state_ = LiteralStates::QuoteState;
+    if (isCharLiteralTerminateSymbol(symbol))
+        public_state_ = State::Undefined;
+    else
+        current_state_ = LiteralStates::QuoteState;
 }
 
 

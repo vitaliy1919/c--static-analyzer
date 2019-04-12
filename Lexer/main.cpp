@@ -1,6 +1,7 @@
-// C++ implementation of search and insert 
-// operations on Trie 
-#include <bits/stdc++.h>
+// C++ implementation of search and insert
+// operations on Trie
+
+#include <iomanip>
 #include "FiniteMachines/CommentsFiniteMachine.h"
 #include "FiniteMachines/StringLiteralFiniteMachine.h"
 #include "FiniteMachines/NumbersFiniteMachine.h"
@@ -12,10 +13,10 @@
 #include "Tokens/CommentToken.h"
 
 using namespace std;
-  
 
+int a = 5&67;
 
-// Driver 
+// Driver
 int main() {
     ifstream file("int.txt");
     ofstream tokens_file("tokens.txt");
@@ -37,7 +38,7 @@ int main() {
         if (tokenRecognizer.isTokenProcessed())
             cout << std::setprecision(6) << row_number << ": ";
         while (i < line.size()) {
-            if (tokenRecognizer.isTokenProcessed() && line[i] == ' ') {
+            if (tokenRecognizer.isTokenProcessed() && isWhiteSpace(line[i])) {
                 cout << line[i];
                 i++;
             } else {
@@ -81,7 +82,13 @@ int main() {
 //                            cout << arg << ' ';
 //                    }
                 } else if (token) {
+                    token->type = TokenTypes::Unrecognized;
                     cout << token->value;
+                    if (i >= line.size())
+                        token->value += '\n';
+                    else
+                        token->value += line[i];
+                    tokens_file << *token << endl;
                 }
                    // cout << e.what() << endl;
             }
@@ -95,7 +102,16 @@ int main() {
     }
     token = tokenRecognizer.inputEOF();
     if (token != nullptr) {
-        
+        std::shared_ptr<CommentToken> unrecognized_comment = std::dynamic_pointer_cast<CommentToken>(token);
+        for (int i = 0; i < unrecognized_comment->lines.size(); i++) {
+            string line = unrecognized_comment->lines[i];
+            if (i != 0)
+                cout << std::setprecision(6) << ++last_output_row << ": ";
+//            unrecognized_comment->printColor();
+            cout << line;
+//            unrecognized_comment->resetColor();
+                cout << "\n";
+        }
     }
 //    while (getline(file, line)) {
 //        for (int i = 0; i < line.size(); i++) {

@@ -75,7 +75,7 @@ digraph finite_state_machine {
     
     s1->s1 [label="C \\ {\", \\}"]
     s1->s2 [label="\\"]
-    s1->send [label="\""]cd
+    s1->send [label="\""]
     s1->serr [label="\\Ts"]
     s2->s1 [label="C \\ {\\Ts}"]
     s2->serr [label="\\Ts"]
