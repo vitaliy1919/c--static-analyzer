@@ -32,10 +32,8 @@ inline bool isPunctuationMark(char symb) {
             return true;
     return false;
 }
-inline bool isTerminateSymbol(char symb) {
-    return isWhiteSpace(symb) || symb == ';' || symb == ':' || symb == ',' || symb == '?' || symb == '[' || symb == ']'
-        || (!isdigit(symb) && !isalpha(symb) && symb != '+' && symb != '-' && symb != '.');
-}
+
+
 inline bool isOperatorFirstSymbol(char symb) {
     static char operators[] = {'+', '-', '*', '/', '%', '=', '&', '|', '>', '<', '&', '!', '^', '(', ')', '[', ']', '~', '.', '?', ':'};
     for (char mark: operators)
@@ -43,7 +41,12 @@ inline bool isOperatorFirstSymbol(char symb) {
             return true;
     return false;
 }
-
+//inline bool isGeneral
+inline bool isTerminateSymbol(char symb) {
+    return isWhiteSpace(symb) ||isPunctuationMark(symb) || isOperatorFirstSymbol(symb);
+//    return isWhiteSpace(symb) || symb == ';' || symb == ':' || symb == ',' || symb == '?' || symb == '[' || symb == ']'
+//        || (!isdigit(symb) && !isalpha(symb) && symb != '+' && symb != '-' && symb != '.');
+}
 inline bool isNumberTerminateSymbol(char symb) {
     return symb != '.' && (isWhiteSpace(symb) || isPunctuationMark(symb) || isOperatorFirstSymbol(symb));
 }
@@ -61,11 +64,9 @@ inline bool isStringLiteralTerminateSymbol(char symb) {
 
 inline std::string parseTokenBySpace(const std::string& str, int& i) {
     size_t len = str.size();
-    while (i < len && str[i] == ' ') {
-        i++;
-    }
+
     std::string result;
-    while (i < len && str[i] != ' ') {
+    while (i < len && !isTerminateSymbol(str[i])) {
         result += str[i];
         i++;
     }

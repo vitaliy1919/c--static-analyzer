@@ -101,7 +101,9 @@ public:
                 std::cout <<ANSI_YELLOW;
                 break;
             case TokenTypes::CharLiteral:
-                std::cout <<ANSI_BOLD<<ANSI_PURPLE;
+//                std::cout <<ANSI_BOLD<<ANSI_PURPLE;
+                std::cout << ANSI_BLUE;
+
                 break;
             case TokenTypes::ReservedWord:
                 std::cout << ANSI_BOLD << ANSI_BLUE;

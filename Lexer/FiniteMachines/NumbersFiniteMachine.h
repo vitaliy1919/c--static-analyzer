@@ -21,6 +21,7 @@ enum class NumberStates {
     ExponentState,
     HexDotState,
     ExponentDigitSequenceState,
+    UnsignedState,
     HexRemainderSequenceState,
     RemainderSequenceState,
 };
@@ -41,6 +42,7 @@ private:
     void digitSequenceState(char symbol);
     void dotState(char symbol);
     void longRemainderState(char symbol);
+    void unsignedState(char symbol);
     void exponentState(char symbol);
     void exponentDigitsState(char symbol);
     void remainderSequenceState(char symbol);

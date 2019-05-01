@@ -45,6 +45,7 @@ public:
             machine = SingletonFiniteMachineFabric::createCommentsFiniteMachine();
             is_comment = true;
         } else if (isPunctuationMark(str[i])) {
+            token_recognized = true;
             std::shared_ptr<Token> token = std::make_shared<Token>(row, i, i + 1, string(1, str[i]));
             token->type = TokenTypes::PunctuationMark;
             i++;
@@ -59,7 +60,9 @@ public:
         } else if (isdigit(str[i]))
             machine = SingletonFiniteMachineFabric::createNumbersFiniteMachine();
         else if (str[i] == '.') {
-            if (i < len - 1 && isdigit(str[i + 1]))
+            if (i > 0 && (isalpha(str[i - 1]) || str[i - 1] == '_' || isDecDigit(str[i - 1])))
+                machine = SingletonFiniteMachineFabric::createOperatorsFiniteMachine();
+            else if (i < len - 1 && isdigit(str[i + 1]))
                 machine = SingletonFiniteMachineFabric::createNumbersFiniteMachine();
             else
                 machine = SingletonFiniteMachineFabric::createOperatorsFiniteMachine();
@@ -95,6 +98,11 @@ public:
 
             if (tokenIndentifier == nullptr && tokenReserved == nullptr) {
                 token_recognized = false;
+                do {
+                    machine->getToken()->value += str[i];
+                    i++;
+                } while (i < str.length() && !isNumberTerminateSymbol(str[i]));
+//                if (i < str.length())
                 return machine->getToken();
             }
             token_recognized = true;
@@ -125,6 +133,10 @@ public:
             return nullptr;
         } else {
             token_recognized = false;
+            while (i < str.length() && !isNumberTerminateSymbol(str[i])) {
+                machine->getToken()->value += str[i];
+                i++;
+            }
             return machine->getToken();
         }
     }

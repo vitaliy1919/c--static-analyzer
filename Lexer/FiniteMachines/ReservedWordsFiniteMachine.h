@@ -124,6 +124,9 @@ protected:
         return isalnum(symbol) || symbol == '_';
     }
 
+    bool terminateSymbol(char symbol) override {
+        return isIdentifierTerminateSymbol(symbol);
+    }
     void preProcess() override {
         token_->type = TokenTypes::ReservedWord;
     }

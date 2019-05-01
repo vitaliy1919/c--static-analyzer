@@ -29,9 +29,13 @@ protected:
     }
 
     bool advance(char symbol) override {
-        return true;
+        return isNumberTerminateSymbol(symbol);
     }
 
+    bool terminateSymbol(char symbol) override  {
+//        return isDecDigit(symbol) || isalpha(symbol) || isPunctuationMark(symbol) || isOperatorFirstSymbol(symbol) || isWhiteSpace(symbol);
+        return true;
+    }
     void preProcess() override {
         token_->type = TokenTypes::Operator;
     }

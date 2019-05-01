@@ -7,6 +7,7 @@
 
 #include "FiniteStateMachine.h"
 #include "../Utils/trie.h"
+#include "../Utils/string-utils.h"
 
 class TrieBasedFiniteMachine: public FiniteStateMachine {
 private:
@@ -24,10 +25,11 @@ private:
                 i++;
             } else {
                 flag = true;
-                if (advance(str[i]))
-                    i++;
+                if (!terminateSymbol(str[i])) {
+                    return false;
+                }
             }
-        } while (!flag);
+        } while (i < str[i] && !flag);
         if (cur_max != -1)
             i = cur_max + 1;
         return cur_max != -1;
@@ -37,6 +39,7 @@ protected:
     virtual void preProcess() = 0;
     virtual void init() = 0;
     virtual bool advance(char symbol) = 0;
+    virtual bool terminateSymbol(char symbol) = 0;
 public:
     State processString(const string &str, int &i, int row) override;
 };

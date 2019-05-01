@@ -2,6 +2,8 @@
 // operations on Trie
 
 #include <iomanip>
+#include <locale>
+#include <codecvt>
 #include "FiniteMachines/CommentsFiniteMachine.h"
 #include "FiniteMachines/StringLiteralFiniteMachine.h"
 #include "FiniteMachines/NumbersFiniteMachine.h"
@@ -18,6 +20,7 @@ int a = 5&67;
 
 // Driver
 int main() {
+
     ifstream file("int.txt");
     ofstream tokens_file("tokens.txt");
     string line;
@@ -32,8 +35,20 @@ int main() {
     State state;
     std::shared_ptr<Token> token = nullptr;
     TokenRecognizer tokenRecognizer;
+
     int last_output_row = 1;
     while (getline(file, line)) {
+//        std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> cvt;
+//
+//        // UTF-8 to UTF-32
+//        std::u32string utf32 = cvt.from_bytes(line);
+//        std::cout << "UTF-32 string size: " << utf32.size() << '\n';
+//        std::cout << "converted() == " << cvt.converted() << '\n';
+//        // UTF-32 to UTF-8
+//        line = cvt.to_bytes(utf32);
+//        std::cout << "new UTF-8 string size: " << line.size() << '\n';
+//        std::cout << "converted() == " << cvt.converted() << '\n';
+        //cout << utf32 <<endl;
         int i = 0;
         if (tokenRecognizer.isTokenProcessed())
             cout << std::setprecision(6) << row_number << ": ";
